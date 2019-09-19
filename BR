@@ -1,0 +1,63 @@
+# Brandon Rhodes - Pandas From the Ground Up
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+pd.set_option('display.max_columns', 999)
+
+import time
+start_time = time.time()
+
+cast = pd.read_csv('data/cast.csv', index_col=None)
+titles = pd.read_csv('data/titles.csv', index_col=None)
+release_dates = pd.read_csv('data/release_dates.csv', index_col=None)
+
+r = release_dates
+print(r.head())
+print(r.columns)
+print(r.shape)
+print('------------------------------------------------------------------------------------------')
+
+r = r[r.title.str.startswith('Star Wars: Episode')]
+r = r[r.country.str.startswith('U')]
+print(r.head())
+print(r.shape)
+print('------------------------------------------------------------------------------------------')
+
+# TODO - *GOLD - master level pivot: df.pivot('index', 'columns', 'values') - df.pivot()
+# NOTE: Left, TOP, Body!
+r_1 = r.pivot('title', 'country', 'date')
+print(r_1.head())
+print(r_1.shape)
+print('------------------------------------------------------------------------------------------')
+
+# Ref - https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.pivot.html
+r_2 = r.pivot(index='title', columns='country', values='date')
+print(r_2.head())
+print(r_2.shape)
+print('------------------------------------------------------------------------------------------')
+
+c = cast
+c = c[c.n <= 2]
+c = c[c.name == 'Cary Grant']  # can we combine these two steps?
+print(c.head())
+print(c.shape)
+print('------------------------------------------------------------------------------------------')
+
+JYU = cast
+JYU = JYU[(JYU.n <= 2) & (JYU.name == 'Cary Grant')]
+print(JYU.head())
+print(JYU.shape)
+print('------------------------------------------------------------------------------------------')
+
+# TODO - *GOLD - merge a table with itself: df.merge(df, on=['Col_A', 'Col_B']) - df.merge()
+# Ref - https://youtu.be/5JnMutdy6Fw?t=8220
+
+c = c.merge(cast, on=['title', 'year'])  # let's find out who is related?
+c = c[c.n_y <= 2]  # NOTE: table on the left is _x, on the right is _y >>> to avoid collide with each other
+c = c[c.name_y != 'Cary Grant']  # NOTE: please make the right side NOT to be the same actor again!
+print(c.head())
+print(c.shape)
+print('------------------------------------------------------------------------------------------')
+
+# https://youtu.be/5JnMutdy6Fw?t=8361
