@@ -17,3 +17,17 @@ print(f'There are {findNumbers(nums)} numbers(s) from the list contain an even n
 #   print('(even number of digits)')
 # else:
 #   print('(odd number of digits)')
+
+
+"""
+12 contains 2 digits (even number of digits)
+345 contains 3 digits (odd number of digits)
+2 contains 1 digits (odd number of digits)
+6 contains 1 digits (odd number of digits)
+7896 contains 4 digits (even number of digits)
+555 contains 3 digits (odd number of digits)
+901 contains 3 digits (odd number of digits)
+482 contains 3 digits (odd number of digits)
+1771 contains 4 digits (even number of digits)
+There are 3 numbers(s) from the list contain an even number of digits
+"""
