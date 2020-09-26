@@ -5,14 +5,25 @@ def duplicateZeros(arr):
     # measure the length of the original array
     n = len(arr)
 
-    # work backwards
+    # we're trying to work backwards
     # [7, 6, 5, 4, 3, 2, 1, 0]
 
     for i in range(n-1, -1, -1):
+
+        """
+        Thesis: (i + zeroes) are competing for the max space of n!
+        """
+
+        # Step 1 - check if it is within maximum range
         if i + zeroes < n:
             arr[i + zeroes] = arr[i]
+
+        # Step 2
+        # 2.1 if out of range and 0, deduct zeroes-credit
         if arr[i] == 0: 
             zeroes -= 1
+
+            # 2.2 if new zeroes + i within range, add an extra 0
             if i + zeroes < n:
                 arr[i + zeroes] = 0
 
