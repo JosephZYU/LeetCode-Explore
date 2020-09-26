@@ -18,12 +18,12 @@ def duplicateZeros(arr):
         if i + zeroes < n:
             arr[i + zeroes] = arr[i]
 
-        # Step 2
-        # 2.1 if out of range and 0, deduct zeroes-credit
+        # Step 2 - out of range
+        # 2.1 deduct zeroes-credit given arr[i] == 0
         if arr[i] == 0: 
             zeroes -= 1
 
-            # 2.2 if new zeroes + i within range, add an extra 0
+            # 2.2. given arr[i] == 0, double check if within new range, then double 0
             if i + zeroes < n:
                 arr[i + zeroes] = 0
 
