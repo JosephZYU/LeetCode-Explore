@@ -9,6 +9,10 @@ class Solution:
         # Return the length after in-place removal
         return len(nums)
 
+# NOTE: array.remove() will happen in-place!
+# It will remove from left to right of given array
+# In Python remove() will remove the first occurrence of value in a list.
+
 """
 Example 1:
 
