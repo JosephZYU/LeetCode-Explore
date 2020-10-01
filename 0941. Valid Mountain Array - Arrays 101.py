@@ -1,15 +1,54 @@
-class Solution:
-    def validMountainArray(self, A: List[int]) -> bool:
-        """
-        :type A: List[int]
-        :rtype: bool
-        """
-        if len(A)<3 or A == sorted(set(A)) or A[::-1] == sorted(set(A)):
+"""
+Detailed Version: Sep-30 2020
+Joseph Yu
+"""
+
+class Solution(object):
+    def validMountainArray(self, A):
+        
+        # if total length < 3: it can NOT be a mountain if there are only 1 or 2 items
+        # if A is strictly upward hill: from small to large with NO peak
+        # if A is strictly downward hill: from large to small with NO peak
+        
+        if len(A) < 3 or A == sorted(set(A)) or A[::-1] == sorted(set(A)):
             return False
 
-        l = A.index(max(A))+1
+        # 🎯 Locate the peak value position
+        
+        P = A.index(max(A)) + 1
 
-        return A[:l] == sorted(set(A[:l])) and A[l-1:][::-1] == sorted(set(A[l-1:]))
+        # 🎯 Test whether uphill and downhill are stictly Mountain Array
+        # NOTE: Array[::-1] makes all items in reverse order
+        # return (stircly uphill) and (strictly downhill)
+        
+        return A[:P] == sorted(set(A[:P])) and A[P-1:][::-1] == sorted(set(A[P-1:]))
+    
+"""
+A = [0, 1, 3, 3, 3, 2, 2]
+
+# Find out the peak value
+print(max(A))
+
+# Locate the first occurence of peak value
+# NOTE: this the 1st occurence - it will ignore whatever afterwards 
+print(A.index(max(A)))
+
+# Convert back to Count No.
+print(A.index(max(A))+1)
+
+print(A[:3])
+
+print(A[3-1:][::-1])
+
+print(list(set(A[3-1:])))
+
+3
+2
+3
+[0, 1, 3]
+[2, 2, 3, 3, 3]
+[2, 3]
+"""
 
 """
 Example 1:
