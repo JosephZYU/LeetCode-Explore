@@ -1,12 +1,30 @@
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
         # Set the array with ONLY unique values
-        # Sort the array
+        # Sort the set to return a sorted list: sort(set(list))
         # 👀 MUST add [:] to adjust in-place
         nums[:] = sorted(set(nums))
         return len(nums)
 
 """
+📝 https://stackoverflow.com/questions/17457793/
+
+sorting-a-set-of-values
+
+>>> s = set(['0.000000000', '0.009518000', '10.277200999', '0.030810999', '0.018384000', '4.918560000'])
+>>> sorted(s)
+['0.000000000', '0.009518000', '0.018384000', '0.030810999', '10.277200999', '4.918560000']
+
+>>> sorted(s, key=float)
+['0.000000000', '0.009518000', '0.018384000', '0.030810999', '4.918560000', '10.277200999']
+
+Note that sorted is giving you a list, not a set. That's because the whole point of a set, 
+both in mathematics and in almost every programming language,* is that it's not ordered: 
+the sets {1, 2} and {2, 1} are the same set.
+"""
+
+"""
+
 Example 1:
 
 Given nums = [1,1,2],
